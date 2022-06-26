@@ -1,5 +1,5 @@
 /**
- * @file StimBase.h
+ * @file Stimuli.h
  *
  * @brief Declares a base class for all stimuli's generation.
  * @author	Ing. Antonio A. Iznaga Marín.
@@ -93,11 +93,12 @@ public:
 	 * 						const std::uint16_t typeSize,
 	 * 						const std::uint8_t earSide) = 0;
 	 *
-	 * @brief Overload configuration method.
+	 * @brief Overload configuration method. Some stimuli are generated with different
+	 * 			configurations on each ear simultaneously.
 	 * @param typeParameters Data structure tailored for each stimuli to be generated.
 	 * @param typeSize Amount of bytes for data structure holding each parameter
 	 * 					type.
-	 * @param earSide
+	 * @param earSide Specify ear to configure.
 	 * @return True on success, false if it fails.
 	 */
 	virtual bool configure(ASG::StimParameters *typeParameters,
@@ -107,41 +108,44 @@ public:
 	/**
 	 * @fn std::float32_t getPeriod_secs() const = 0;
 	 *
-	 * @brief Getted method for
-	 * @return
+	 * @brief Getter method for period of stimuli.
+	 * @return Amount of seconds for a period of the stimuli.
 	 */
 	virtual std::float32_t getPeriod_secs() const = 0;
 
 	/**
 	 * @fn std::uint32_t getPosition() const;
 	 *
-	 * @brief
-	 * @return
+	 * @brief Getter method for the index position of last
+	 * 		generated sample. Next generation will start at
+	 * 		position + 1.
+	 * @return The Index of last generated sample.
 	 */
 	std::uint32_t getPosition() const;
 
 	/**
 	 * @fn bool setPosition(std::uint32_t position);
 	 *
-	 * @brief
-	 * @param position
-	 * @return
+	 * @brief Setter method position
+	 * @param position The index marking the position to start
+	 * 			the next generation.
+	 * @return True if success, false if it fails.
 	 */
 	virtual bool setPosition(std::uint32_t position);
 
 	/**
 	 * @fn bool resetPosition();
 	 *
-	 * @brief
-	 * @return
+	 * @brief Set Index for position to zero.
+	 * @return True if success, false if it fails.
 	 */
 	virtual bool resetPosition();
 
 	/**
 	 * @fn std::float32_t getSamplingFrequency() const;
 	 *
-	 * @brief
-	 * @return
+	 * @brief Getter method to retrieve the stimuli sampling frequency.
+	 * @return The Stimuli sampling frequency for generation.
 	 */
 	std::float32_t getSamplingFrequency() const;
 
@@ -159,10 +163,10 @@ public:
 	 * @fn std::uint32_t leastCommonMultiple(std::uint32_t numberA,
 	 * 										std::uint32_t numberB);
 	 *
-	 * @brief
-	 * @param numA
-	 * @param numB
-	 * @return
+	 * @brief Calculates the least common multiple needed for generating frequencies.
+	 * @param numA first integer parameter
+	 * @param numB second integer parameter
+	 * @return The least common multiple for the parameters.
 	 */
 	std::uint32_t leastCommonMultiple(std::uint32_t numA, std::uint32_t numB);
 
