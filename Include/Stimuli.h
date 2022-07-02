@@ -20,7 +20,7 @@ namespace ASG
 /**
  * @brief Base class for stimuli generation.
  *
- * @remarks This method is an interface to be implemented by all generated
+ * @remarks This class is an interface to be implemented by all generated
  * stimuli.
  */
 class Stimuli
